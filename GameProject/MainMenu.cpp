@@ -94,7 +94,7 @@ MainMenu::MenuOptionAction MainMenu::handleClick(int x, int y)
 	return MainMenu::MenuOptionAction::NOTHING_SELECTED;
 }
 
-void MainMenu::processEvent(sf::Event & event, GameStateType & nextGameStateType)
+sf::Keyboard::Key MainMenu::processEvent(sf::Event & event, GameStateType & nextGameStateType)
 {
 	if (event.mouseButton.button == sf::Mouse::Left)
 	{
@@ -108,6 +108,10 @@ void MainMenu::processEvent(sf::Event & event, GameStateType & nextGameStateType
 		{
 			nextGameStateType = GameStateType::EXIT;
 		}
+
+		return event.key.code;
 	}
+
+	return sf::Keyboard::Unknown;
 }
 

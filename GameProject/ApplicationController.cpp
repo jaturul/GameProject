@@ -21,7 +21,7 @@ ApplicationController::ApplicationController()
 	: m_current_game_state(GameState::GameStateType::UNINITIALIZED)
 	, m_splash_screen( new SplashScreen(SPLASH_SCREEN_PATH))
 	, m_main_menu ( new MainMenu(MAIN_MENU_PATH, WINDOW_WIDTH, WINDOW_HEIGHT))
-	, m_game ( new Game() ) 
+	, m_game ( new Game(WINDOW_WIDTH, WINDOW_HEIGHT) )
 {
 	
 }

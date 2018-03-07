@@ -28,10 +28,14 @@ int SplashScreen::run(sf::RenderWindow & window, GameStateType& nextGameStateTyp
 	return 0;
 }
 
-void SplashScreen::processEvent( sf::Event& event, GameStateType& nextGameStateType)
+sf::Keyboard::Key SplashScreen::processEvent( sf::Event& event, GameStateType& nextGameStateType)
 {
 	if (event.type == sf::Event::KeyPressed)
 	{
 		nextGameStateType = GameStateType::MAIN_MENU;
+		
+		return event.key.code;
 	}
+
+	return sf::Keyboard::Unknown;
 }

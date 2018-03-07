@@ -12,5 +12,5 @@ public:
 	virtual int run(sf::RenderWindow& window, GameStateType& nextGameState) = 0;
 
 private:
-	virtual void processEvent(sf::Event& event, GameStateType& nextGameStateType) = 0;
+	virtual sf::Keyboard::Key processEvent(sf::Event& event, GameStateType& nextGameStateType) = 0;
 };

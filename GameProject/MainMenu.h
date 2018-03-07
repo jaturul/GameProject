@@ -38,7 +38,7 @@ private:
 	Size computeButtonSize(const int windowWidth, const int windowHeight, const int noOptions);
 	MenuOptionAction handleClick(int x, int y);
 	void initializeMenuOptions(int windowWidth, int windowHeight);
-	virtual void processEvent(sf::Event& event, GameStateType& nextGameStateType) override;
+	virtual sf::Keyboard::Key processEvent(sf::Event& event, GameStateType& nextGameStateType) override;
 
 	sf::Texture m_main_menu_background_texture;
 	sf::Sprite m_main_menu_background_sprite;

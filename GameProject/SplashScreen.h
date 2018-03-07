@@ -16,7 +16,7 @@ public:
 	virtual int run(sf::RenderWindow& window, GameStateType& nextGameStateType) override;
 
 private:
-	virtual void processEvent(sf::Event& event, GameStateType& nextGameStateType) override;
+	virtual sf::Keyboard::Key processEvent(sf::Event& event, GameStateType& nextGameStateType) override;
 
 	sf::Texture m_splash_screen_texture;
 	sf::Sprite m_splash_screen_sprite;
