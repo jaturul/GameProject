@@ -49,7 +49,16 @@ GameObject * GameObjectManager::getObject(const std::string & name)
 	{
 		return nullptr;
 	}
-	return m_game_objects_map[name].get();
+	GameObject* something = m_game_objects_map[name].get();
+}
+
+const GameObject * GameObjectManager::getConstObject(const std::string & name) const
+{
+	if (m_game_objects_map.find(name) == m_game_objects_map.end())
+	{
+		return nullptr;
+	}
+	GameObject* something = m_game_objects_map[name].get();
 }
 
 void GameObjectManager::removeObject(const std::string & name)

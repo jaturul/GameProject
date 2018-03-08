@@ -17,6 +17,7 @@ public:
 	void addObject(const std::string& name, GameObject* gameObject);
 	int getObjectCount();
 	GameObject* getObject(const std::string& name);
+	const GameObject* getConstObject(const std::string& name) const;
 	void removeObject(const std::string& name);
 
 private:
