@@ -26,9 +26,7 @@ Ball::Ball(const GameObjectManager* gameObjectManager, float velocityAmplitude, 
 {
 	srand(time(NULL));
 	int angle_in_degrees = 100 + (rand() % 150);
-	std::cout << "angle in degrees: " << angle_in_degrees << std::endl;
 	float angle_in_radians = 2.0f * M_PI * angle_in_degrees / 360.0f;
-	std::cout << "angle in radians: " << angle_in_radians << std::endl;
 	m_velocity_angle_radians = angle_in_radians;
 }
 
@@ -71,7 +69,39 @@ float Ball::getAngleForCollisions()
 
 float Ball::getAngleForPlayerCollisions()
 {
-	//TODO
+	const PlayerPaddle* player_paddle = dynamic_cast<const PlayerPaddle*>(m_game_object_manager->getConstObject("PlayerPaddle"));
+	sf::Rect<float> intersection;
+	if (this->getBoundingBox().intersects(player_paddle->getBoundingBox(), intersection))
+	{
+		sf::Vector2f paddle_left_corner = player_paddle->getPosition();
+		sf::Vector2f paddle_right_corner = player_paddle->getPosition() + sf::Vector2f(player_paddle->getWindowWidth(), 0.0f);
+
+		if (intersection.top > player_paddle->getPosition().y) // collision with sides of the paddle
+		{
+			return 2.0f * M_PI_float - m_velocity_angle_radians;
+		}
+		else if ( (intersection.contains(paddle_left_corner)) && 
+			      (this->getPosition().y < player_paddle->getPosition().y) &&
+				  (m_velocity_angle_radians >= 0) &&
+				  (m_velocity_angle_radians <= M_PI_float / 2.0f) ) // collision with paddle's left corner
+		{
+			return m_velocity_angle_radians + M_PI_float;
+		}
+		else if ( (intersection.contains(paddle_right_corner)) &&
+				  (this->getPosition().y < player_paddle->getPosition().y) &&
+				  (m_velocity_angle_radians >= 3.0f * M_PI_float / 2.0f) &&
+				  (m_velocity_angle_radians <= 2.0f * M_PI_float ) ) // collision with paddle's right corner
+		{
+			return m_velocity_angle_radians - M_PI_float;
+		}
+		else if ((this->getPosition().y < player_paddle->getPosition().y) &&
+			     (this->getPosition().x > paddle_left_corner.x) &&
+			     (this->getPosition().x < paddle_right_corner.x)) // collision with paddle's top surface
+		{
+			return M_PI_float - m_velocity_angle_radians;
+		}
+	}
+
 	return m_velocity_angle_radians;
 }
 

@@ -6,7 +6,7 @@
 class PlayerPaddle : public GameObject
 {
 public:
-	PlayerPaddle(float maxVelocity,  float paddleAcceleration, int windowWidth, int windowHeight, bool playerControllable);
+	PlayerPaddle(float maxVelocity, int windowWidth, int windowHeight, bool playerControllable);
 	
 	virtual void draw(sf::RenderWindow& window) override;
 	virtual void update(float timeDelta) override;

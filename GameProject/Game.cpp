@@ -8,9 +8,8 @@ namespace
 	const std::string PLAYER_PADDLE_IMAGE_PATH = "C:/Users/jatur/Documents/Visual Studio 2017/Projects/GameProject/GameProject/images/paddle.jpg";
 	const std::string BALL_IMAGE_PATH = "C:/Users/jatur/Documents/Visual Studio 2017/Projects/GameProject/GameProject/images/ball.jpg";
 
-	const float MAX_PADDLE_VELOCITY = 600.0f;
-	const float MAX_BALL_VELOCITY = 90.0f;
-	const float PADDLE_ACCELERATION = 3.0f;
+	const float MAX_PADDLE_VELOCITY = 1000.0f;
+	const float MAX_BALL_VELOCITY = 30.0f;
 }
 
 Game::Game(int windowWidth, int windowHeight)
@@ -18,12 +17,12 @@ Game::Game(int windowWidth, int windowHeight)
 	, m_window_width(windowWidth)
 	, m_window_height(windowHeight)
 {
-	PlayerPaddle* player_paddle = new PlayerPaddle(MAX_PADDLE_VELOCITY, PADDLE_ACCELERATION, m_window_width, m_window_height, true); // owned by m_game_object_manager
+	PlayerPaddle* player_paddle = new PlayerPaddle(MAX_PADDLE_VELOCITY, m_window_width, m_window_height, true); // owned by m_game_object_manager
 	player_paddle->loadImage(PLAYER_PADDLE_IMAGE_PATH);
 	player_paddle->setPosition(m_window_width / 2 - player_paddle->getObjectWidth() / 2, m_window_height - player_paddle->getObjectHeight());
 	m_game_object_manager.addObject("PlayerPaddle", player_paddle);
 
-	Ball* ball = new Ball(MAX_BALL_VELOCITY, false, m_window_width, m_window_height);
+	Ball* ball = new Ball(&m_game_object_manager, MAX_BALL_VELOCITY, false, m_window_width, m_window_height);
 	ball->loadImage(BALL_IMAGE_PATH);
 	ball->setPosition(m_window_width / 2 , m_window_height / 2 );
 	m_game_object_manager.addObject("Ball", ball);

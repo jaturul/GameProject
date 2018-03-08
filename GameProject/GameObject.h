@@ -10,19 +10,19 @@ public:
 
 	virtual void draw(sf::RenderWindow& window) = 0;
 	
-	bool isPlayerControllable();
-	bool isImageLoaded();
+	bool isPlayerControllable() const;
+	bool isImageLoaded() const;
 	void loadImage(const std::string& filePath);
 
-	sf::Rect<float> getBoundingBox();
+	sf::Rect<float> getBoundingBox() const;
 
-	int getObjectWidth();
-	int getObjectHeight();
+	int getObjectWidth() const;
+	int getObjectHeight() const;
 
-	int getWindowWidth();
-	int getWindowHeight();
+	int getWindowWidth() const;
+	int getWindowHeight() const;
 
-	sf::Vector2f getPosition();
+	sf::Vector2f getPosition() const;
 	void setPosition(float x, float y);
 
 	virtual void update(float timeDelta) = 0;

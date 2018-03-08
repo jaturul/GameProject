@@ -49,7 +49,7 @@ GameObject * GameObjectManager::getObject(const std::string & name)
 	{
 		return nullptr;
 	}
-	GameObject* something = m_game_objects_map[name].get();
+	return m_game_objects_map[name].get();
 }
 
 const GameObject * GameObjectManager::getConstObject(const std::string & name) const
@@ -58,7 +58,7 @@ const GameObject * GameObjectManager::getConstObject(const std::string & name) c
 	{
 		return nullptr;
 	}
-	GameObject* something = m_game_objects_map[name].get();
+	return m_game_objects_map.at(name).get();
 }
 
 void GameObjectManager::removeObject(const std::string & name)

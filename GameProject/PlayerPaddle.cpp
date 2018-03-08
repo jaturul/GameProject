@@ -3,10 +3,9 @@
 
 #include <iostream>
 
-PlayerPaddle::PlayerPaddle(float maxVelocity, float paddleAcceleration, int windowWidth, int windowHeight, bool playerControllable)
+PlayerPaddle::PlayerPaddle(float maxVelocity, int windowWidth, int windowHeight, bool playerControllable)
 	: GameObject(playerControllable, windowWidth, windowHeight)
 	, m_max_velocity(maxVelocity)
-	, m_paddle_acceleration(paddleAcceleration)
 	, m_current_velocity(0.0f)
 {
 }
@@ -22,7 +21,7 @@ void PlayerPaddle::update(float timeDelta)
 	{
 		float position_delta = timeDelta * m_current_velocity;
 
-		int new_position_x = m_object_sprite.getPosition().x + position_delta;
+		float new_position_x = m_object_sprite.getPosition().x + position_delta;
 
 		setPosition(new_position_x, getPosition().y);
 	}
@@ -43,6 +42,7 @@ void PlayerPaddle::processPlayerInput(float timeDelta, const sf::Keyboard::Key &
 	}
 	else
 	{
+		m_current_velocity = 0.0f;
 		m_is_moving = false;
 	}
 }
